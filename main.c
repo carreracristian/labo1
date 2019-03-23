@@ -3,7 +3,12 @@
 //archivo.o codigo objeto. Traduccion a binario.
 int main()
 {
-    int numero;
+
+
+
+
+
+    /*int numero;
     char letra;
     char palabra[10];
 
@@ -12,7 +17,7 @@ int main()
     setbuf(stdin, NULL);
     printf("La palabra es: %s",palabra);
 
-    /*printf("Ingrese un numero: ");
+    printf("Ingrese un numero: ");
     scanf("%d",&numero);
 
     printf("Ingrese una letra : ");
