@@ -1,62 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define T 100
-#include "biblioteca.h"
+#define T 10
+#include "productos.h"
+
+/*
+1. TODOS LOS PRODUCTOS CON SU PROVEEDOR.
+2. POR CADA PROVEEDOR, SUS PRODUCTOS.
+3. POR CADA PROVEEDOR, LA CANTIDAD DE PRODUCTOS.
+4. EL PRECIO PROMEDIO DE LOS PRODUCTOS DE CADA PROVEEDOR.
+5. EL/LOS PROVEEDORES/ES QUE PROVEE MAS PRODUCTOS.
+*/
 
 int main()
 {
 
     int opcion;
-    int opc;
 
-    eEmployee unEmpleado;
-    eEmployee listadoEmpleados[T];
-    construirArray(listadoEmpleados,T);
-    mostrarArray(listadoEmpleados,T);
+    eProducto unProducto;
+    eProducto listadoProductos[T];
+    eProveedor listadoProveedores[T];
+    construirArray(listadoProductos,T);
+    inicializarProductos(listadoProductos,T);
 
     do
     {
-        printf("1.ALTA\n2.BAJA\n3.MODIFICAR\n4.Informar\n5.Salir\nElija opcion: ");
+        printf("1.ALTA\n2.BAJA\n3.MODIFICAR\n4.MOSTAR.\n5.SALIR.\nElija opcion: ");
         scanf("%d", &opcion);
 
         switch(opcion)
         {
             case 1:
-               insertarEmpleado(listadoEmpleados, T);
+               insertarProducto(listadoProductos, T);
             break;
             case 2:
-                borrarEmpleado(listadoEmpleados,T);
+                borrarProducto(listadoProductos,T);
                 break;
             case 3:
-                editarEmpleado(listadoEmpleados, T);
+                editarProducto(listadoProductos, T);
                 break;
 
             case 4:
-                printf("1.Mostrar empleados\n2.Mostrar por apellido\n3.Mostrar por sector\n4.Mostrar sueldos\n5.Salir\nElija opcion: ");
-                scanf("%d", &opc);
-                switch(opc)
-                {
-                case 1:
-                    crearId(listadoEmpleados, T);
-                    mostrarArray(listadoEmpleados,T);
-                    break;
-                case 2:
-                    ordenarPorApellido(listadoEmpleados,T);
-                    mostrarArray(listadoEmpleados,T);
-                    break;
-                case 3:
-                    ordenarPorSector(listadoEmpleados,T);
-                    mostrarArray(listadoEmpleados,T);
-                    break;
-                case 4:
-                    mostrarSalario(listadoEmpleados,T);
-                    break;
-                }
-
+                //mostrarArray(listadoProductos,T);
+                mostrarArrayProductosConProveedor(listadoProductos,listadoProveedores,4,4);
                 break;
         }
     }while(opcion!=5);
+
+
+
+
+
+
 
     return 0;
 }
