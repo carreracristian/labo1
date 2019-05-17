@@ -1,59 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-/** \brief Permite cargar un caracter
- *\param char* El char a cargar
- *\return int [0]-> Si no se pudo cargar el cacarter
-              [1]-> Si se pudo cargar el cacarter
- *
- */
-//Pedir al usuario ingresar un caracter ynguardarlo con puntero.
-int getCaracter(char*);
-void mostrarLetra(char*);
-
+/*1 funcion crgar enteros
+  2 mostrar
+  3 ordenar
+  4 calcular max
+  5devolverPromedio*/
+void mostrarArray(int*,int);
 int main()
 {
 
-    char datoChar;
+    int variable[5]={5,4,3,2,1};
+   // int *puntero;
+    int i;
 
-    int estado;
-    estado=getCaracter(&datoChar);
+    //puntero=&variable;
+    mostrarArray(variable,5);
+    //puntero=&variable[0];
 
-    if(estado==1)
-    {
-        printf("Caracter cargado con exito\n");
-        mostrarLetra(&datoChar);
-    }
-    else
-    {
-        printf("El caracter no fue guardado\n");
-    }
+    /*printf("%d\n",puntero);//variable
+    printf("%d\n",puntero+0);//&variable[0]
+    printf("%d\n",puntero+1);//&variable[1]
+    printf("%d\n\n",puntero+2);//&variable[2]
 
-   /* printf("Ingrese un caracter: ");
-    fflush(stdin);
-    scanf("%c",&datoChar);*/
-   // mostrarLetra(NULL);
-    printf("El caracter es: %c",datoChar);
+   // printf("%d\n",variable);//variable
+    printf("%d\n",*(puntero+0));//&variable[0]
+    printf("%d\n",*(puntero+1));//&variable[1]
+    printf("%d\n",*(puntero+2));//&variable[2]*/
+
+    /*int valor=99;
+    int* p;
+    int* q;
+
+    p=&valor;
+    q=p;
+
+
+    printf("%d", *q);*/
+
     return 0;
 }
-int getCaracter(char* punteroChar)
+void mostrarArray(int* pArray,int tam)
 {
-    int cargo=0;
-    if(punteroChar!=NULL)
+    int i;
+     for(i=0;i<5;i++)
     {
-        printf("Ingrese un caracter: ");
-        fflush(stdin);
-        scanf("%c",punteroChar);
-
-        cargo=1;
-    }
-    return cargo;
-}
-void mostrarLetra(char* punteroChar)
-{
-    if(punteroChar!=NULL)
-    {
-        printf("%c",*punteroChar);
+        printf("%d\n",*(pArray+i));//variable de i
     }
 
 }
