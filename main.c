@@ -1,57 +1,59 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#define T 10
-#include "productos.h"
 
-/*
-1. TODOS LOS PRODUCTOS CON SU PROVEEDOR.
-2. POR CADA PROVEEDOR, SUS PRODUCTOS.
-3. POR CADA PROVEEDOR, LA CANTIDAD DE PRODUCTOS.
-4. EL PRECIO PROMEDIO DE LOS PRODUCTOS DE CADA PROVEEDOR.
-5. EL/LOS PROVEEDORES/ES QUE PROVEE MAS PRODUCTOS.
-*/
+/** \brief Permite cargar un caracter
+ *\param char* El char a cargar
+ *\return int [0]-> Si no se pudo cargar el cacarter
+              [1]-> Si se pudo cargar el cacarter
+ *
+ */
+//Pedir al usuario ingresar un caracter ynguardarlo con puntero.
+int getCaracter(char*);
+void mostrarLetra(char*);
 
 int main()
 {
 
-    int opcion;
+    char datoChar;
 
-    eProducto unProducto;
-    eProducto listadoProductos[T];
-    eProveedor listadoProveedores[T];
-    construirArray(listadoProductos,T);
-    inicializarProductos(listadoProductos,T);
+    int estado;
+    estado=getCaracter(&datoChar);
 
-    do
+    if(estado==1)
     {
-        printf("1.ALTA\n2.BAJA\n3.MODIFICAR\n4.MOSTAR.\n5.SALIR.\nElija opcion: ");
-        scanf("%d", &opcion);
+        printf("Caracter cargado con exito\n");
+        mostrarLetra(&datoChar);
+    }
+    else
+    {
+        printf("El caracter no fue guardado\n");
+    }
 
-        switch(opcion)
-        {
-            case 1:
-               insertarProducto(listadoProductos, T);
-            break;
-            case 2:
-                borrarProducto(listadoProductos,T);
-                break;
-            case 3:
-                editarProducto(listadoProductos, T);
-                break;
-
-            case 4:
-                //mostrarArray(listadoProductos,T);
-                mostrarArrayProductosConProveedor(listadoProductos,listadoProveedores,4,4);
-                break;
-        }
-    }while(opcion!=5);
-
-
-
-
-
-
-
+   /* printf("Ingrese un caracter: ");
+    fflush(stdin);
+    scanf("%c",&datoChar);*/
+   // mostrarLetra(NULL);
+    printf("El caracter es: %c",datoChar);
     return 0;
+}
+int getCaracter(char* punteroChar)
+{
+    int cargo=0;
+    if(punteroChar!=NULL)
+    {
+        printf("Ingrese un caracter: ");
+        fflush(stdin);
+        scanf("%c",punteroChar);
+
+        cargo=1;
+    }
+    return cargo;
+}
+void mostrarLetra(char* punteroChar)
+{
+    if(punteroChar!=NULL)
+    {
+        printf("%c",*punteroChar);
+    }
+
 }
