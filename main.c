@@ -1,50 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
-/*1 funcion crgar enteros
-  2 mostrar
-  3 ordenar
-  4 calcular max
-  5devolverPromedio*/
-void mostrarArray(int*,int);
+#define T 5
 int main()
 {
 
-    int variable[5]={5,4,3,2,1};
-   // int *puntero;
+
+
+
+    int* pNumeros;
+    int* aux;
     int i;
 
-    //puntero=&variable;
-    mostrarArray(variable,5);
-    //puntero=&variable[0];
+    pNumeros = (int*) malloc(sizeof(int)*T);
 
-    /*printf("%d\n",puntero);//variable
-    printf("%d\n",puntero+0);//&variable[0]
-    printf("%d\n",puntero+1);//&variable[1]
-    printf("%d\n\n",puntero+2);//&variable[2]
-
-   // printf("%d\n",variable);//variable
-    printf("%d\n",*(puntero+0));//&variable[0]
-    printf("%d\n",*(puntero+1));//&variable[1]
-    printf("%d\n",*(puntero+2));//&variable[2]*/
-
-    /*int valor=99;
-    int* p;
-    int* q;
-
-    p=&valor;
-    q=p;
-
-
-    printf("%d", *q);*/
-
-    return 0;
-}
-void mostrarArray(int* pArray,int tam)
-{
-    int i;
-     for(i=0;i<5;i++)
+    if(pNumeros!=NULL)
     {
-        printf("%d\n",*(pArray+i));//variable de i
+        for(i=0; i<T; i++)
+        {
+            printf("Ingrese un numero: ");
+            scanf("%d", pNumeros+i);
+        }
+        for(i=0; i<T; i++)
+        {
+            printf("%d\n", *(pNumeros+i));
+        }
+
+        aux = (int*) realloc(pNumeros,sizeof(int)*(T+5));
+        if(aux!=NULL)
+        {
+            pNumeros = aux;
+            for(i=T; i<T+5; i++)
+            {
+                printf("Ingrese un numero: ");
+                scanf("%d", pNumeros+i);
+            }
+            for(i=0; i<T+5; i++)
+            {
+                printf("%d\n", *(pNumeros+i));
+            }
+          pNumeros=(int*) realloc(pNumeros,sizeof(int)*4);
+          printf("Luego de achicar\n");
+            for(i=0; i<T+5; i++)
+            {
+                printf("%d\n", *(pNumeros+i));
+            }
+
+        }
+        else
+        {
+            printf("no hay memoria suficiente!!!");
+        }
     }
 
+
+    return 0;
 }
