@@ -153,3 +153,82 @@
 
 1571275479 c:\users\usuario\desktop\labo2\labo2\carreracristian\informs.h
 
+1571696886 source:c:\users\alumno\desktop\labo1\carreracristian\alquileres.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ImputAndValidate.h"
+	"categoria.h"
+	"juegos.h"
+	"cliente.h"
+	"alquileres.h"
+
+1571693774 c:\users\alumno\desktop\labo1\carreracristian\imputandvalidate.h
+
+1571693774 c:\users\alumno\desktop\labo1\carreracristian\categoria.h
+
+1571693774 c:\users\alumno\desktop\labo1\carreracristian\juegos.h
+	"categoria.h"
+
+1571701936 c:\users\alumno\desktop\labo1\carreracristian\cliente.h
+
+1571696956 c:\users\alumno\desktop\labo1\carreracristian\alquileres.h
+
+1571698283 source:c:\users\alumno\desktop\labo1\carreracristian\categoria.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	<conio.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ImputAndValidate.h"
+	"categoria.h"
+
+1571698308 source:c:\users\alumno\desktop\labo1\carreracristian\imputandvalidate.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<ctype.h>
+
+1571697466 source:c:\users\alumno\desktop\labo1\carreracristian\informs.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ImputAndValidate.h"
+	"categoria.h"
+	"juegos.h"
+	"cliente.h"
+	"alquileres.h"
+	"informs.h"
+
+1571697400 c:\users\alumno\desktop\labo1\carreracristian\informs.h
+
+1571698338 source:c:\users\alumno\desktop\labo1\carreracristian\juegos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ImputAndValidate.h"
+	"categoria.h"
+	"juegos.h"
+
+1571701936 source:c:\users\alumno\desktop\labo1\carreracristian\cliente.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ImputAndValidate.h"
+	"cliente.h"
+
+1571701316 source:c:\users\alumno\desktop\labo1\carreracristian\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ImputAndValidate.h"
+	"categoria.h"
+	"juegos.h"
+	"cliente.h"
+	"alquileres.h"
+	"informs.h"
+

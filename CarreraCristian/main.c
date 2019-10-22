@@ -8,10 +8,11 @@
 #include "alquileres.h"
 #include "informs.h"
 
-#define TAMC 6
-#define TAMJ 5
-#define TAMCAT 5
-#define TAMA 6
+#define TAMC 10
+#define TAMJ 10
+#define TAMCAT 10
+#define TAMA 10
+#define TAML 10
 
 int menuOpciones();
 
@@ -21,7 +22,7 @@ int main()
     int atrasInf;
     int idCliente=1000;
     int idAlquier=10000;
-
+    eLocalidad localidad[TAML];
     eJuego juegos[TAMJ];
     eCategoria cat[TAMCAT];
     eCliente clientes[TAMC];
@@ -41,27 +42,27 @@ int main()
         switch(menuOpciones())
         {
         case 1:
-            if(altaCliente(clientes,TAMC,idCliente))
+            if(altaCliente(clientes,TAMC,idCliente,localidad,TAML))
             {
                 idCliente++;
             }
             break;
 
         case 2:
-            modificarCliente(clientes,TAMC);
+            modificarCliente(clientes,TAMC,localidad,TAML);
             break;
 
         case 3:
-            bajaCliente(clientes,TAMC);
+            bajaCliente(clientes,TAMC,localidad,TAML);
             break;
 
         case 4:
             ordenarCliente(clientes,TAMC);
-            mostrarClientes(clientes,TAMC);
+            mostrarClientes(clientes,TAMC,localidad,TAML);
             break;
 
         case 5:
-            if(altaAlquiler(alquiler,TAMA,juegos,TAMJ,clientes,TAMC,cat,TAMCAT,idAlquier))
+            if(altaAlquiler(alquiler,TAMA,juegos,TAMJ,clientes,TAMC,cat,TAMCAT,localidad,TAML, idAlquier))
             {
                 idAlquier++;
             }
@@ -81,15 +82,15 @@ int main()
                     break;
 
                 case 2 :
-                    mostrarAlquilerPorCliente(clientes,TAMC,alquiler,TAMA,cat,TAMCAT,juegos,TAMJ);
+                    mostrarAlquilerPorCliente(clientes,TAMC,alquiler,TAMA,cat,TAMCAT,juegos,TAMJ,localidad,TAML);
                     break;
 
                 case 3 :
-                    mostrarImporteCliente(clientes,TAMC,alquiler,TAMA,cat,TAMCAT,juegos,TAMJ);
+                    mostrarImporteCliente(clientes,TAMC,alquiler,TAMA,cat,TAMCAT,juegos,TAMJ,localidad,TAML);
                     break;
 
                 case 4 :
-                    clientesSinAlquilar(clientes,TAMC,alquiler,TAMA);
+                    clientesSinAlquilar(clientes,TAMC,alquiler,TAMA,localidad,TAML);
                     break;
 
                 case 5 :
@@ -107,7 +108,6 @@ int main()
 
                 case 8 :
                     cantidadDeAlquileresPorJuegos(alquiler,TAMA,cat,TAMCAT,juegos,TAMJ);
-                    //void mostrarAlquileresDeTodosJuegos(clientes,TAMC,alquiler,TAMA,cat,TAMCAT,juegos,TAMJ);
                     break;
 
                 case 9 :
@@ -122,6 +122,10 @@ int main()
         break;
 
         case 8:
+            mostrarLocalidades(localidad,TAML);
+            //mostrarJuegos(juegos,TAMJ,cat,TAMCAT);
+            break;
+        case 9:
             salir=confimarSalir("\nDesea salir? s/n: ");
             break;
 
@@ -151,7 +155,8 @@ int menuOpciones()
     printf("5. Alta alquileres\n");
     printf("6. Listar alquileres\n");
     printf("7. Informes\n");
-    printf("8. Salir\n\n");
+    printf("8. Mostrar localidades\n");
+    printf("9. Salir\n\n");
     printf("Ingrese opcion: ");
     scanf("%d",&opcion);
 

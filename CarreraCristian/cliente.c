@@ -5,23 +5,70 @@
 #include "ImputAndValidate.h"
 #include "cliente.h"
 
-int harcodearClientes(eCliente vec[], int tam, int cant)
+void harcodearLocalidad(eLocalidad loc[], int tamaL)
 {
-    int cont=0;
-    eCliente clientes[]=
+    int i;
+    eLocalidad lista[]=
     {
-        {1000,"juan","perez",'m',"15111","ayacucho 2214",0},
-        {1001,"lucia","gomez",'f',"15222","villate 234",0},
-        {1002,"pedro","correa",'m',"15333","snta fe 4899",0},
-        {1003,"ana","solis",'f',"15444","feliu 454",0},
-        {1004,"luciana","rodriguez",'f',"15555","jb justo 1234",0},
-        {1005,"roberto","sanchez",'m',"15666","asuncion 467",0}
+        {100,"Zarate"},
+        {101,"Quilmes"},
+        {102,"CABA"},
+        {103,"Olivos"},
+        {104,"Avellaneda"},
 
     };
 
-   if(cant<= tam && cant<=6)
+
+    for( i=0; i<tamaL; i++)
+    {
+        loc[i]=lista[i];
+    }
+}
+void mostrarLocalidad(eLocalidad loc)
+{
+   printf("%d    %10s \n",loc.id,loc.nombre);
+}
+
+void mostrarLocalidades(eLocalidad loc[],int tamaL){
+
+    int i;
+    system("cls");
+    printf(" ID    DESCRIPCION \n\n");
+
+    for( i=0 ;i<tamaL; i++)
+    {
+        mostrarLocalidad(loc[i]);
+    }
+}
+void obtenerNomLocalidad(int id,eLocalidad vec[], int tam,  char desc[])
+{
+    int i;
+    for( i=0; i<tam; i++)
+    {
+        if(vec[i].id == id)
+        {
+            strcpy(desc,vec[i].nombre);
+        }
+    }
+}
+int harcodearClientes(eCliente vec[], int tam, int cant)
+{
+    int cont=0;
+    int i;
+    eCliente clientes[]=
+    {
+        {1000,"juan","perez",'m',"15111","ayacucho 2214",100,0},
+        {1001,"lucia","gomez",'f',"15222","villate 234",101,0},
+        {1002,"pedro","correa",'m',"15333","snta fe 4899",102,0},
+        {1003,"ana","solis",'f',"15444","feliu 454",103,0},
+        {1004,"luciana","rodriguez",'f',"15555","jb justo 1234",102,0},
+        {1005,"roberto","sanchez",'m',"15666","asuncion 467",101,0}
+
+    };
+
+   if(cant<= tam && cant<=10)
    {
-       for(int i=0; i<tam; i++)
+       for( i=0; i<tam; i++)
         {
         vec[i]=clientes[i];
         cont++;
@@ -32,7 +79,8 @@ int harcodearClientes(eCliente vec[], int tam, int cant)
 }
 void inicializarClientes(eCliente vec[], int tam)
 {
-    for(int i=0; i<tam; i++)
+    int i;
+    for( i=0; i<tam; i++)
     {
         vec[i].isEmpty=1;
     }
@@ -41,8 +89,9 @@ void inicializarClientes(eCliente vec[], int tam)
 int buscarLibreCliente(eCliente vec[],int tam)
 {
     int indice=-1;
+    int i;
 
-    for(int i=0; i<tam; i++)
+    for( i=0; i<tam; i++)
     {
         if(vec[i].isEmpty==1)
         {
@@ -54,25 +103,28 @@ int buscarLibreCliente(eCliente vec[],int tam)
     return indice;
 }
 
-void mostrarCliente(eCliente vec)
+void mostrarCliente(eCliente vec, eLocalidad localidad[],int tamaL)
 {
+    char nomLocalidad[50];
 
-    printf(" %2d  %10s  %10s         %c      %10s      %10s\n",vec.id,vec.nombre,vec.apellido,
-           vec.sexo,vec.telefono,vec.domicilio);
+    obtenerNomLocalidad(vec.idLocalidad,localidad,tamaL,nomLocalidad);
+    printf(" %2d  %10s  %10s         %c    %10s      %10s   %10s\n",vec.id,vec.nombre,vec.apellido,
+           vec.sexo,vec.telefono,vec.domicilio,nomLocalidad);
 }
 
-void mostrarClientes(eCliente vec[], int tam)
+void mostrarClientes(eCliente vec[], int tam,eLocalidad loc[],int tamaL)
 {
     int cont=0;
+    int i;
 
     system("cls");
-    printf(" ID         NOMBRE       APELLIDO      SEXO      TELEFONO      DOMICILIO\n\n");
+    printf(" ID    NOMBRE       APELLIDO      SEXO      TELEFONO     DOMICILIO    LOCALIDAD\n\n");
 
-    for(int i=0; i<tam; i++)
+    for( i=0; i<tam; i++)
     {
         if(vec[i].isEmpty==0)
         {
-            mostrarCliente(vec[i]);
+            mostrarCliente(vec[i],loc,tamaL);
             cont++;
         }
     }
@@ -83,7 +135,7 @@ void mostrarClientes(eCliente vec[], int tam)
     }
 }
 
-int altaCliente(eCliente vec[], int tam,int id)
+int altaCliente(eCliente vec[], int tam,int id,eLocalidad loc[],int tamaL)
 {
     int todoOk=0;
     int indice;
@@ -105,7 +157,8 @@ int altaCliente(eCliente vec[], int tam,int id)
         getSexo(&vec[indice].sexo,"Ingrese sexo f/m: ");
         pedirTelefono(vec[indice].telefono,21,"Ingrese telefono: ");
         getStringAlphaNum(51, "Ingrese domicilio con numero: ",vec[indice].domicilio);
-
+        mostrarLocalidades(loc,tamaL);
+        getIntRange(vec[indice].idLocalidad,100,999,"Ingrese id de la localidad: ");
         vec[indice].isEmpty=0;
         todoOk=1;
         printf("\nAlta realizada con exito\n\n");
@@ -117,8 +170,9 @@ int altaCliente(eCliente vec[], int tam,int id)
 int buscarClienteId(eCliente vec[], int tam, int id)
 {
     int indice=-1;
+     int i;
 
-    for(int i=0; i<tam; i++)
+    for( i=0; i<tam; i++)
     {
         if(vec[i].isEmpty==0 && vec[i].id==id)
         {
@@ -130,13 +184,13 @@ int buscarClienteId(eCliente vec[], int tam, int id)
     return indice;
 }
 
-void bajaCliente(eCliente vec[], int tam)
+void bajaCliente(eCliente vec[], int tam, eLocalidad loc[],int tamaL)
 {
     int confirma;
     int indice;
     int id;
 
-    mostrarClientes(vec,tam);
+    mostrarClientes(vec,tam,loc,tamaL);
 
     getIntRange(&id,1000,9999,"Ingrese id del cliente: ");
 
@@ -168,10 +222,12 @@ void bajaCliente(eCliente vec[], int tam)
 void ordenarCliente(eCliente vec[], int tam)
 {
     eCliente aux;
+     int i;
+     int j;
 
-    for(int i=0; i<tam-1; i++)
+    for( i=0; i<tam-1; i++)
     {
-        for(int j=i+1; j<tam; j++)
+        for( j=i+1; j<tam; j++)
         {
             if(strcmpi(vec[i].apellido,vec[j].apellido)>0)
             {
@@ -208,13 +264,13 @@ int menuModificacion()
     return opcion;
 }
 
-void modificarCliente(eCliente vec[], int tam)
+void modificarCliente(eCliente vec[], int tam,eLocalidad loc[],int tamaL)
 {
     int indice;
     int atras;
     int id;
 
-    mostrarClientes(vec,tam);
+    mostrarClientes(vec,tam,loc,tamaL);
 
     getIntRange(&id,1000,9999,"Ingrese id del cliente: ");
 
@@ -256,7 +312,8 @@ void modificarCliente(eCliente vec[], int tam)
 
 void obtenerNomCliente(eCliente vec[], int tam, int id, char dondeAsigar[])
 {
-    for(int i=0; i<tam; i++)
+    int i;
+    for( i=0; i<tam; i++)
     {
         if(vec[i].id == id)
         {

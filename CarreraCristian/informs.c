@@ -30,14 +30,15 @@ int menuInformes()
 }
 
 void mostrarAlquilerPorCliente(eCliente cliente[],int tam, eAlquiler alq[],int tamAl,
-                               eCategoria cat[],int tamC, eJuego juegos[],int tamJ)
+                               eCategoria cat[],int tamC, eJuego juegos[],int tamJ,eLocalidad loc[],int tamaL)
 {
 
     int idCliente;
     int esta;
     int flag=0;
+    int i;
 
-    mostrarClientes(cliente,tamC);
+    mostrarClientes(cliente,tamC,loc,tamAl);
     getIntRange(&idCliente,1000,9999,"Ingrese id de cliente: ");
 
     esta=buscarClienteId(cliente,tamC,idCliente);
@@ -55,7 +56,7 @@ void mostrarAlquilerPorCliente(eCliente cliente[],int tam, eAlquiler alq[],int t
 
         printf("  ID         JUEGO               CLIENTE               FECHA_ALQUILER\n\n");
 
-        for(int i=0; i<tamAl; i++)
+        for( i=0; i<tamAl; i++)
         {
             if(alq[i].idCliente == idCliente && alq[i].isEmpty == 0)
             {
@@ -74,14 +75,16 @@ void mostrarAlquilerPorCliente(eCliente cliente[],int tam, eAlquiler alq[],int t
 
 
 void mostrarImporteCliente(eCliente cliente[],int tam, eAlquiler alq[],int tamAl,
-                           eCategoria cat[],int tamC, eJuego juegos[],int tamJ)
+                           eCategoria cat[],int tamC, eJuego juegos[],int tamJ,eLocalidad loc[],int tamaL)
 {
 
     int idCliente;
     int esta;
     float total=0;
+    int i;
+    int j;
 
-    mostrarClientes(cliente,tamC);
+    mostrarClientes(cliente,tamC,loc,tamaL);
     getIntRange(&idCliente,1000,9999,"Ingrese id de cliente: ");
 
     esta=buscarClienteId(cliente,tamC,idCliente);
@@ -101,13 +104,13 @@ void mostrarImporteCliente(eCliente cliente[],int tam, eAlquiler alq[],int tamAl
         mostrarJuegos(juegos,tamJ,cat,tamC);
         printf("\n\n");
 
-        for(int i=0; i<tamAl; i++)
+        for( i=0; i<tamAl; i++)
         {
             if(alq[i].idCliente == idCliente && alq[i].isEmpty == 0)
             {
                 mostrarAlquiler(alq[i],juegos,tamJ,cliente,tamC);
 
-                for(int j=0; j<tamJ; j++)
+                for( j=0; j<tamJ; j++)
                 {
                     if(juegos[j].codigo == alq[i].idJuego)
                     {
@@ -125,13 +128,15 @@ void mostrarImporteCliente(eCliente cliente[],int tam, eAlquiler alq[],int tamAl
 void mostrarJuegosMesa(eJuego juego[], int tamJ,eCategoria cat[], int tamC)
 {
     char cate[21];
+     int i;
+     int j;
 
     system("cls");
     printf(" ID    DESCRIPCION     IMPORTE     CATEGORIA\n\n");
 
-    for(int i=0; i<tamJ; i++)
+    for( i=0; i<tamJ; i++)
     {
-        for(int j=0; j<tamC; j++)
+        for( j=0; j<tamC; j++)
         {
             if(juego[i].idCategoria == cat[j].id)
             {
@@ -150,8 +155,9 @@ void mostrarJuegosMesa(eJuego juego[], int tamJ,eCategoria cat[], int tamC)
 int mostrarAlquileresClientes(int idCliente,eAlquiler alq[],int tamAl)
 {
     int alquiler=0;
+     int i;
 
-    for(int i=0; i<tamAl; i++)
+    for( i=0; i<tamAl; i++)
     {
         if(alq[i].isEmpty==0 && alq[i].idCliente == idCliente)
         {
@@ -161,18 +167,19 @@ int mostrarAlquileresClientes(int idCliente,eAlquiler alq[],int tamAl)
 
     return alquiler;
 }
-void clientesSinAlquilar(eCliente cliente[],int tam, eAlquiler alq[],int tamAl)
+void clientesSinAlquilar(eCliente cliente[],int tam, eAlquiler alq[],int tamAl,eLocalidad loc[],int tamaL)
 {
      int flag=0;
+      int i;
 
     system("cls");
     printf("Clientes sin alquileres:\n\n");
 
-    for(int i=0; i<tam; i++)
+    for( i=0; i<tam; i++)
     {
         if(mostrarAlquileresClientes(cliente[i].id,alq,tamAl)==0)
         {
-            mostrarCliente(cliente[i]);
+            mostrarCliente(cliente[i],loc,tamaL);
             flag++;
         }
 
@@ -187,8 +194,9 @@ void clientesSinAlquilar(eCliente cliente[],int tam, eAlquiler alq[],int tamAl)
 int mostrarJuegosAlquilados(int idJuego,eAlquiler alq[],int tam)
 {
     int alquiler=0;
+    int i;
 
-    for(int i=0; i<tam; i++)
+    for( i=0; i<tam; i++)
     {
         if(alq[i].isEmpty==0 && alq[i].idJuego == idJuego)
         {
@@ -202,11 +210,12 @@ void juegosSinAlquilar(eCliente cliente[],int tam, eAlquiler alq[],int tamAl,
                            eCategoria cat[],int tamC, eJuego juegos[],int tamJ)
 {
     int cont=0;
+    int i;
 
     system("cls");
     printf("Juegos sin alquilar:\n\n");
 
-    for(int i=0; i<tamJ; i++)
+    for( i=0; i<tamJ; i++)
     {
         if(mostrarJuegosAlquilados(juegos[i].codigo,alq,tamAl)==0)
         {
@@ -228,6 +237,8 @@ void mostrarImporteJuego(eCliente cliente[],int tam, eAlquiler alq[],int tamAl,
     int idJuego;
     int esta;
     float total=0;
+    int i;
+    int j;
 
     mostrarJuegos(juegos,tamJ,cat,tamC);
 
@@ -250,13 +261,13 @@ void mostrarImporteJuego(eCliente cliente[],int tam, eAlquiler alq[],int tamAl,
         mostrarJuegos(juegos,tamJ,cat,tamC);
         printf("\n\n");
 
-        for(int i=0; i<tamAl; i++)
+        for( i=0; i<tamAl; i++)
         {
             if(alq[i].idJuego == idJuego && alq[i].isEmpty == 0)
             {
                 mostrarAlquiler(alq[i],juegos,tamJ,cliente,tamC);
 
-                for(int j=0; j<tamJ; j++)
+                for( j=0; j<tamJ; j++)
                 {
                     if(juegos[j].codigo == alq[i].idJuego)
                     {
@@ -277,6 +288,8 @@ void mostrarImporteCategoria(eCliente cliente[],int tam, eAlquiler alq[],int tam
     int idCategoria;
     int esta;
     float total=0;
+    int i;
+    int j;
 
     //mostrarClientes(cliente,tamC);
     mostrarCategorias(cat,tamC);
@@ -299,14 +312,14 @@ void mostrarImporteCategoria(eCliente cliente[],int tam, eAlquiler alq[],int tam
         mostrarJuegos(juegos,tamJ,cat,tamC);
         printf("\n\n");
 
-        for(int i=0; i<tamJ; i++)
+        for( i=0; i<tamJ; i++)
         {
             if(juegos[i].idCategoria == idCategoria)
             //if(alq[i]. == idCliente && alq[i].isEmpty == 0)
             {
                 mostrarAlquiler(alq[i],juegos,tamJ,cliente,tamC);
 
-                for(int j=0; j<tamJ; j++)
+                for( j=0; j<tamJ; j++)
                 {
                     if(juegos[j].codigo == alq[i].idJuego)
                     {
@@ -326,6 +339,7 @@ void cantidadDeAlquileresPorJuegos(eAlquiler alq[],int tamAl,eCategoria cat[],in
     int idJuego;
     int esta;
     float total=0;
+    int i;
 
     mostrarJuegos(juegos,tamJ,cat,tamC);
 
@@ -348,7 +362,7 @@ void cantidadDeAlquileresPorJuegos(eAlquiler alq[],int tamAl,eCategoria cat[],in
         mostrarJuegos(juegos,tamJ,cat,tamC);
         printf("\n\n");
 
-        for(int i=0; i<tamAl; i++)
+        for( i=0; i<tamAl; i++)
         {
             if(alq[i].idJuego == idJuego && alq[i].isEmpty == 0)
             {

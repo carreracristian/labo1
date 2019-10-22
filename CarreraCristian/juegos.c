@@ -8,6 +8,7 @@
 
 void harcodearJuego(eJuego vec[], int tam)
 {
+    int i;
     eJuego lista[]=
     {
         {100,"Monopoly",500,1},
@@ -18,7 +19,7 @@ void harcodearJuego(eJuego vec[], int tam)
 
     };
 
-    for(int i=0; i<tam; i++)
+    for( i=0; i<tam; i++)
     {
         vec[i]=lista[i];
     }
@@ -36,10 +37,11 @@ void mostrarJuego(eJuego juego, eCategoria cat[], int tam)
 
 void mostrarJuegos(eJuego juego[],int tamJ, eCategoria cat[], int tamC){
 
+    int i;
     system("cls");
     printf(" ID    DESCRIPCION     IMPORTE     CATEGORIA\n\n");
 
-    for(int i=0 ;i<tamJ; i++)
+    for( i=0 ;i<tamJ; i++)
     {
         mostrarJuego(juego[i],cat,tamC);
     }
@@ -47,7 +49,8 @@ void mostrarJuegos(eJuego juego[],int tamJ, eCategoria cat[], int tamC){
 
 void obtenerNomJuego(eJuego vec[], int tam, int id, char dondeAsignar[])
 {
-    for(int i=0; i<tam; i++)
+    int i;
+    for( i=0; i<tam; i++)
     {
         if(vec[i].codigo == id)
         {
@@ -58,8 +61,9 @@ void obtenerNomJuego(eJuego vec[], int tam, int id, char dondeAsignar[])
 int buscarJuegoId(eJuego vec[], int tam, int id)
 {
     int indice=-1;
+    int i;
 
-    for(int i=0; i<tam; i++)
+    for( i=0; i<tam; i++)
     {
         if(vec[i].codigo==id)
         {

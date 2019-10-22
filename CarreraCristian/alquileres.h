@@ -24,4 +24,4 @@ void inicializarAlquiler(eAlquiler vec[], int tam);
 int buscarLibreAlquiler(eAlquiler vec[],int tam);
 void mostrarAlquiler(eAlquiler vec, eJuego juego[], int tamJ, eCliente cliente[], int tamC);
 void mostrarAlquileres(eAlquiler vec[], int tam, eJuego juego[], int tamJ, eCliente cliente[], int tamC);
-int altaAlquiler(eAlquiler vec[], int tam, eJuego juego[], int tamJ, eCliente cliente[], int tamC,eCategoria cat[], int tCat, int id);
+int altaAlquiler(eAlquiler vec[], int tam, eJuego juego[], int tamJ, eCliente cliente[], int tamC,eCategoria cat[], int tCat,eLocalidad loc[],int tamaL, int id);

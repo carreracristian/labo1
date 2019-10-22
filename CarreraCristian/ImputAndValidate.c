@@ -37,14 +37,14 @@ int confimarSalir(char* mensaje)
 
 void getStringAlpha(int longMax, char* mensaje, char* dondeAsignar)
 {
-
+    int i;
     char aux[longMax];
 
     printf("%s",mensaje);
     fflush(stdin);
     gets(aux);
 
-    for(int i=0; i<strlen(aux); i++)
+    for( i=0; i<strlen(aux); i++)
     {
         while((isalpha(aux[i])==0) || strlen(aux) > longMax)
         {
@@ -66,13 +66,14 @@ void getIntRange(int* dondeAsignar, int min, int max, char* mensaje)
 
     int auxInt;
     char aux[20];
+    int i;
 
     printf("\n%s",mensaje);
     fflush(stdin);
     gets(aux);
 
 
-    for(int i=0; i<strlen(aux); i++)
+    for( i=0; i<strlen(aux); i++)
     {
         while(isdigit(aux[i])==0)
         {
@@ -152,12 +153,13 @@ void getFloatRange(float min, float max, float* dondeAsignar, char* mensaje)
 {
     float auxFloat;
     char aux[20];
+    int i;
 
     printf("%s",mensaje);
       fflush(stdin);
     gets(aux);
 
-    for(int i=0; i<strlen(aux); i++)
+    for( i=0; i<strlen(aux); i++)
     {
         while((isdigit(aux[i])==0))
         {
@@ -190,7 +192,7 @@ void getStringAlphaNum(int longMax, char* mensaje, char* dondeAsignar)
     fflush(stdin);
     gets(aux);
 
-    for(int i=0; i<strlen(aux); i++)
+    for( i=0; i<strlen(aux); i++)
     {
         while( strlen(aux) > longMax)
         {

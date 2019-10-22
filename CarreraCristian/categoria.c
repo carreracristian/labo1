@@ -12,6 +12,7 @@
 
 void harcodearCategoria(eCategoria vec[], int tam)
 {
+    int i;
     eCategoria lista[]=
     {
         {1,"Mesa"},
@@ -22,7 +23,7 @@ void harcodearCategoria(eCategoria vec[], int tam)
 
     };
 
-    for(int i=0 ;i<tam; i++)
+    for( i=0 ;i<tam; i++)
     {
         vec[i] = lista[i];
     }
@@ -35,10 +36,11 @@ void mostrarCategoria(eCategoria vec)
 
 void mostrarCategorias(eCategoria vec[], int tam)
 {
+    int i;
     system("cls");
     printf(" ID    CATEGORIA\n\n");
 
-    for(int i=0 ;i<tam; i++)
+    for( i=0 ;i<tam; i++)
     {
         mostrarCategoria(vec[i]);
     }
@@ -46,7 +48,8 @@ void mostrarCategorias(eCategoria vec[], int tam)
 
 void obtenerNomCat(eCategoria vec[], int tam, int id, char dondeAsignar[])
 {
-    for(int i=0 ;i<tam; i++)
+    int i;
+    for( i=0 ;i<tam; i++)
     {
         if(vec[i].id == id)
         {
@@ -57,8 +60,9 @@ void obtenerNomCat(eCategoria vec[], int tam, int id, char dondeAsignar[])
 int buscarCategoriaId(eCategoria vec[], int tam, int id)
 {
     int indice=-1;
+    int i;
 
-    for(int i=0; i<tam; i++)
+    for( i=0; i<tam; i++)
     {
         if(vec[i].id==id)
         {

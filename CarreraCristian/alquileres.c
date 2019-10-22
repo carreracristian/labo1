@@ -24,7 +24,8 @@ int harcodearAlquileres(eAlquiler vec[], int tam, int cant)
 
    if(cant<= tam && cant<=6)
    {
-       for(int i=0; i<tam; i++)
+       int i;
+       for( i=0; i<tam; i++)
         {
         vec[i]=alquileres[i];
         cont++;
@@ -36,7 +37,8 @@ int harcodearAlquileres(eAlquiler vec[], int tam, int cant)
 
 void inicializarAlquiler(eAlquiler vec[], int tam)
 {
-    for(int i=0; i<tam; i++)
+    int i;
+    for( i=0; i<tam; i++)
     {
         vec[i].isEmpty=1;
     }
@@ -45,8 +47,8 @@ void inicializarAlquiler(eAlquiler vec[], int tam)
 int buscarLibreAlquiler(eAlquiler vec[],int tam)
 {
     int indice=-1;
-
-    for(int i=0; i<tam; i++)
+    int i;
+    for( i=0; i<tam; i++)
     {
         if(vec[i].isEmpty==1)
         {
@@ -73,11 +75,12 @@ void mostrarAlquiler(eAlquiler vec, eJuego juego[], int tamJ, eCliente cliente[]
 void mostrarAlquileres(eAlquiler vec[], int tam, eJuego juego[], int tamJ, eCliente cliente[], int tamC)
 {
     int cont=0;
+    int i;
 
     system("cls");
     printf("  ID         JUEGO               CLIENTE           FECHA_ALQUILER\n\n");
 
-    for(int i=0; i<tam; i++)
+    for( i=0; i<tam; i++)
     {
         if(vec[i].isEmpty==0)
         {
@@ -92,7 +95,7 @@ void mostrarAlquileres(eAlquiler vec[], int tam, eJuego juego[], int tamJ, eClie
     }
 }
 
-int altaAlquiler(eAlquiler vec[], int tam, eJuego juego[], int tamJ, eCliente cliente[], int tamC,eCategoria cat[], int tCat, int id)
+int altaAlquiler(eAlquiler vec[], int tam, eJuego juego[], int tamJ, eCliente cliente[], int tamC,eCategoria cat[], int tCat,eLocalidad loc[],int tamaL, int id)
 {
     int todoOk=0;
     int indice;
@@ -113,7 +116,7 @@ int altaAlquiler(eAlquiler vec[], int tam, eJuego juego[], int tamJ, eCliente cl
         mostrarJuegos(juego,tamJ,cat,tCat);
         getIntRange(&vec[indice].idJuego,100,103,"\nIngrese codigo de juego: ");
 
-        mostrarClientes(cliente,tamC);
+        mostrarClientes(cliente,tamC,loc,tamaL);
         getIntRange(&vec[indice].idCliente,1000,9999,"\nIngrese id del cliente: ");
 
 
